@@ -1,0 +1,94 @@
+/* For newer IE versions, since they ignore meta viewport tags in snap mode */
+@-ms-viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+@viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+*, :before, :after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+/*
+ * Header and Hero
+ */
+
+header {
+  text-align: right;
+  padding: 1em;
+  border-bottom: 3px solid #7d97ad;
+  font-variant: small-caps;
+}
+
+.logo {
+  float: left;
+  width: 80px; /* Use a multiple of 16 to align edges with pixels */
+  fill: #444;
+}
+
+.hero {
+  display: block;
+  width: 100%;
+  padding: 1em;
+}
+
+
+/*
+ * Main content
+ */
+
+main {
+  width: 100%;
+}
+
+.featured-work {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.featured-work h2 {
+  width: 100%;
+  text-align: center;
+}
+
+.featured-work article {
+  width: 100%;
+  padding: 1em;
+  text-align: center;
+}
+
+/*
+ * Responsive media queries
+ */
+
+@media screen and (min-width: 400px) {
+  .featured-work article {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  main,
+  .hero {
+    width: 800px;
+    margin: 0 auto;
+  }
+
+  .featured-work article {
+    width: 33.3333%;
+  }
+}
