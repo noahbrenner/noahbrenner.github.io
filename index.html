@@ -4,7 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>The Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+      The URL below recommends against "device-width", which results in
+      incorrect zooming for iPhones in landscape mode. Fortunately, defining
+      "initial-scale" alone actually accomplishes the same thing (I verified
+      this viewport behavior by testing it on an Android phone):
+      https://webdesign.tutsplus.com/articles/quick-tip-dont-forget-the-viewport-meta-tag--webdesign-5972
+    ---->
+    <meta name="viewport" content="initial-scale=1">
     <meta name="Description" content="Noah Brenner's full-stack development portfolio.">
     <link rel="stylesheet" href="/css/styles.css">
   </head>
