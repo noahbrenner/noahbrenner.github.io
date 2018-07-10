@@ -37,13 +37,14 @@ header {
 .logo {
   float: left;
   width: 80px; /* Use a multiple of 16 to align edges with pixels */
+  height: 80px;
   fill: #444;
 }
 
 .hero {
   display: block;
   width: 100%;
-  padding: 1em;
+  padding: 1em 0;
 }
 
 

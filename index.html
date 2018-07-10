@@ -14,6 +14,7 @@
     <meta name="viewport" content="initial-scale=1">
     <meta name="Description" content="Noah Brenner's full-stack development portfolio.">
     <link rel="stylesheet" href="/css/styles.css">
+    <!-- TODO Use Picturefill: http://scottjehl.github.io/picturefill/ -->
   </head>
   <body>
     <header>
@@ -24,13 +25,29 @@
       <h1>Noah Brenner</h1>
       <p>Full-stack Developer</p>
     </header>
-    <img class="hero" alt="" src="/img/nb.svg">
+    <picture>
+      <source type="image/webp"
+        sizes="(min-width: 800px) 800px, 100vw"
+        srcset="/img-out/code-800.webp 800w, /img-out/code-400.webp 400w">
+      <source type="image/jpeg"
+        sizes="(min-width: 800px) 800px, 100vw"
+        srcset="/img-out/code-800.jpg 800w, /img-out/code-400.jpg 400w">
+      <img class="hero" alt="" src="/img-out/code-800.jpg">
+    </picture>
     <main>
       <section class="featured-work">
         <h2>Featured Work</h2>
 
         <article>
-          <img alt="placeholder" src="/img/nb.svg">
+          <picture>
+            <source type="image/webp"
+              sizes="(min-width: 800px) calc(33.3vw - 2em), (min-width: 400px) calc(50vw - 2em), calc(100vw - 2em)"
+              srcset="/img-out/blue-triangles-500.webp 500w, /img-out/blue-triangles-300.webp 300w">
+            <source type="image/jpeg"
+              sizes="(min-width: 800px) calc(33.3vw - 2em), (min-width: 400px) calc(50vw - 2em), calc(100vw - 2em)"
+              srcset="/img-out/blue-triangles-500.jpg 500w, /img-out/blue-triangles-300.jpg 300w">
+            <img alt="placeholder" src="/img-out/blue-triangles-300.jpg">
+          </picture>
           <h3>gsvg</h3>
           <a href="https://github.com/noahbrenner/gsvg">https://github.com/noahbrenner/gsvg</a>
         </article>

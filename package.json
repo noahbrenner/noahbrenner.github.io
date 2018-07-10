@@ -1,0 +1,22 @@
+{
+  "name": "noahbrenner.github.io",
+  "description": "Noah Brenner's portfolio website.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noahbrenner/noahbrenner.github.io.git"
+  },
+  "author": "Noah Brenner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noahbrenner/noahbrenner.github.io/issues"
+  },
+  "homepage": "https://noahbrenner.github.io/",
+  "devDependencies": {
+    "globby": "^8.0.1",
+    "gm": "^1.23.1",
+    "runjs": "^4.3.2"
+  }
+}
