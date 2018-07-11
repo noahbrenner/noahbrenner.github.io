@@ -13,6 +13,11 @@
   box-sizing: border-box;
 }
 
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
 html,
 body {
   margin: 0;
@@ -28,10 +33,22 @@ img {
  */
 
 header {
-  text-align: right;
+  overflow: auto;
+  margin-bottom: 1em;
   padding: 1em;
   border-bottom: 3px solid #7d97ad;
+  text-align: right;
+  font-family: 'Quattrocento Sans', sans-serif;
+  font-weight: 700;
   font-variant: small-caps;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header p {
+  margin: 1em 0 0;
 }
 
 .logo {
@@ -44,7 +61,6 @@ header {
 .hero {
   display: block;
   width: 100%;
-  padding: 1em 0;
 }
 
 
@@ -91,5 +107,9 @@ main {
 
   .featured-work article {
     width: 33.3333%;
+  }
+
+  .featured-work p {
+    font-size: 0.9em;
   }
 }
