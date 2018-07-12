@@ -25,17 +25,23 @@ body {
   line-height: 1.6;
 }
 
-main {
+.full-width {
   width: 100%;
-}
-
-h2 {
-  width: 100%;
-  text-align: center;
 }
 
 img {
   max-width: 100%;
+}
+
+a:link,
+a:visited {
+  color: #00f;
+}
+
+a:active,
+a:focus,
+a:hover {
+  color: #a03;
 }
 
 /*
@@ -73,7 +79,6 @@ img {
  */
 
 header {
-  overflow: auto;
   margin-bottom: 1em;
   padding: 1em;
   border-bottom: 3px solid #7d97ad;
@@ -83,19 +88,29 @@ header {
   font-variant: small-caps;
 }
 
-header h1 {
-  margin: 0;
-}
-
-header p {
-  margin: 1em 0 0;
+.container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  height: 80px;
 }
 
 .logo {
-  float: left;
   width: 80px; /* Use a multiple of 16 to align edges with pixels */
   height: 80px;
   fill: #444;
+}
+
+header h1 {
+  margin: 0;
+  line-height: 1;
+  font-size: 2em;
+}
+
+header p {
+  margin: 0;
+  line-height: 1;
+  font-size: 1.2em;
 }
 
 .hero {
@@ -112,9 +127,15 @@ address {
 }
 
 address ul {
+  margin: 1em 0 0;
   padding: 0;
   list-style: none;
   text-align: center;
+}
+
+address a {
+  display: inline-block;
+  line-height: 3em;
 }
 
 /*
@@ -124,16 +145,27 @@ address ul {
 .featured-work {
   display: flex;
   flex-wrap: wrap;
+  /* I'd prefer space-evenly, but it's not widely supported yet */
+  justify-content: space-between;
+}
+
+h2 {
+  width: 100%;
+  margin: 0.75em auto 0;
+  border-bottom: 3px solid #7d97ad;
+  text-align: center;
+  font-size: 1.6em;
+  color: #444;
 }
 
 .featured-work article {
   width: 100%;
-  padding: 1em;
+  margin: 1em auto;
   text-align: center;
 }
 
 .featured-work h3 {
-  margin: 0 auto 0.5em;
+  margin: 0 auto 0.15em;
   font-size: 1.25em;
 }
 
@@ -144,7 +176,7 @@ address ul {
 
 .featured-work figure {
   position: relative;
-  margin: 0;
+  margin: 0 50px;
   padding: 0;
   vertical-align: bottom;
 }
@@ -156,14 +188,12 @@ address ul {
 
 .featured-work figcaption {
   position: absolute;
-  left: 0;
   bottom: 0;
-  padding: 0.25em;
-  text-indent: 0.25em;
+  line-height: 2.1em;
+  text-indent: 0.4em;
   text-align: left;
-  font-size: 0.7em;
+  font-size: 0.68em;
   color: #ddd;
-  /*text-shadow: 0 0 3px #000, 0 0 2px #000, 0 0 1px #000;*/
   text-shadow: 1px 1px 1px #000;
   width: 100%;
   min-height: 1.5em;
@@ -172,6 +202,7 @@ address ul {
 
 .featured-work figcaption a:link,
 .featured-work figcaption a:visited {
+  display: inline-block;
   color: #ddd;
 }
 
@@ -183,16 +214,19 @@ address ul {
 }
 
 .featured-work p {
-  margin: 0.5em 0;
+  margin: 0.5em 0 0;
 }
 
 .featured-work .github {
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 3em;
   font-size: 0.8em;
 }
 
 .featured-work ul {
   list-style: none;
-  margin: 0.5em 0 0;
+  margin: 0;
   padding: 0;
 }
 
@@ -210,7 +244,7 @@ address ul {
  */
 
 footer {
-  width: 100%;
+  margin-top: 1em;
   padding: 0.5em 0;
   border-top: 3px solid #7d97ad;
   background: #999;
@@ -229,20 +263,30 @@ footer li {
   padding: 0 1em;
 }
 
+footer a {
+  display: inline-block;
+  line-height: 3em;
+}
+
 /*
  * Responsive media queries
  */
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 450px) {
+  /* Fit 2 on a line */
   .featured-work article {
-    width: 50%;
+    /* Same as calc((100% - 30) / 2), but Android 4.4 can't divide */
+    width: calc(50% - 15px);
+  }
+
+  .featured-work figure {
+    margin: 0;
   }
 }
 
 @media screen and (min-width: 800px) {
-  main,
-  .hero {
-    width: 800px;
+  .full-width {
+    max-width: 850px;
     margin: 0 auto;
   }
 
@@ -263,10 +307,17 @@ footer li {
   }
 
   .featured-work article {
-    width: 33.3333%;
+    /* At 800px, same as calc((100% - 20px) / 3), but Android 4.4 can't divide */
+    width: 260px; /* Fit 3 on a line with a minimum of 10px between each one */
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .featured-work p {
     font-size: 0.9em;
+  }
+
+  footer a {
+    line-height: 2em;
   }
 }

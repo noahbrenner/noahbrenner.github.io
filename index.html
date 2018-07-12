@@ -22,12 +22,14 @@
   </head>
   <body>
     <header>
-      <!-- Reference: https://css-tricks.com/lodge/svg/16-svg-icon-system-external-source/ -->
-      <svg class="logo">
-        <use xlink:href="/img/nb.svg#nb" />
-      </svg>
-      <h1>Noah Brenner</h1>
-      <p>Full-stack Developer</p>
+      <div class="container full-width">
+        <!-- Reference: https://css-tricks.com/lodge/svg/16-svg-icon-system-external-source/ -->
+        <svg class="logo">
+          <use xlink:href="/img/nb.svg#nb" />
+        </svg>
+        <h1>Noah Brenner</h1>
+        <p>Full-stack Developer</p>
+      </div>
     </header>
     <picture>
       <source type="image/webp"
@@ -36,9 +38,9 @@
       <source type="image/jpeg"
         sizes="(min-width: 800px) 800px, 100vw"
         srcset="/img-out/code-800.jpg 800w, /img-out/code-400.jpg 400w">
-      <img class="hero" alt="" src="/img-out/code-800.jpg">
+      <img class="hero full-width" alt="" src="/img-out/code-800.jpg">
     </picture>
-    <main>
+    <main class="full-width">
     <address>
       <ul>
         <li><a class="email icon">Noah (at) Noah Brenner (dot) com</a></li>
@@ -46,7 +48,7 @@
         <li><a class="github icon" href="https://github.com/noahbrenner/">GitHub Profile</a></li>
       </ul>
     </address>
-      <section class="featured-work">
+      <section class="featured-work full-width">
         <h2>Featured Work</h2>
 
         <article>
@@ -93,7 +95,7 @@
           <figure>
             <img alt="placeholder" src="/img/screenshot.png">
           </figure>
-          <p>Noah Brenner's portfolio website</p>
+          <p>Noah's portfolio website</p>
           <a class="github icon" href="https://github.com/noahbrenner/noahbrenner.github.io">noahbrenner/noahbrenner.github.io</a>
           <ul>
             <li>HTML</li>
