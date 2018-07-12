@@ -22,6 +22,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  line-height: 1.6;
 }
 
 main {
@@ -131,8 +132,72 @@ address ul {
   text-align: center;
 }
 
+.featured-work figure {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  vertical-align: bottom;
+}
+
+.featured-work img {
+  display: block;
+  width: 100%;
+}
+
+.featured-work figcaption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0.25em;
+  text-indent: 0.25em;
+  text-align: left;
+  font-size: 0.7em;
+  color: #ddd;
+  /*text-shadow: 0 0 3px #000, 0 0 2px #000, 0 0 1px #000;*/
+  text-shadow: 1px 1px 1px #000;
+  width: 100%;
+  min-height: 1.5em;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.featured-work figcaption a:link,
+.featured-work figcaption a:visited {
+  color: #ddd;
+}
+
+.featured-work figcaption a:hover,
+.featured-work figcaption a:focus,
+.featured-work figcaption a:active {
+  color: #fff;
+  text-shadow: none;
+}
+
 .featured-work .github {
   font-size: 0.8em;
+}
+
+/*
+ * Footer
+ */
+
+footer {
+  width: 100%;
+  padding: 0.5em 0;
+  border-top: 3px solid #7d97ad;
+  background: #999;
+  font-size: 0.9em;
+}
+
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+footer li {
+  display: inline-block;
+  padding: 0 1em;
 }
 
 /*

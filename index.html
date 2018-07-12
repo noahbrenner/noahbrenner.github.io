@@ -49,33 +49,48 @@
         <h2>Featured Work</h2>
 
         <article>
-          <picture>
-            <source type="image/webp"
-              sizes="(min-width: 800px) calc(33.3vw - 2em), (min-width: 400px) calc(50vw - 2em), calc(100vw - 2em)"
-              srcset="/img-out/blue-triangles-500.webp 500w, /img-out/blue-triangles-300.webp 300w">
-            <source type="image/jpeg"
-              sizes="(min-width: 800px) calc(33.3vw - 2em), (min-width: 400px) calc(50vw - 2em), calc(100vw - 2em)"
-              srcset="/img-out/blue-triangles-500.jpg 500w, /img-out/blue-triangles-300.jpg 300w">
-            <img alt="placeholder" src="/img-out/blue-triangles-300.jpg">
-          </picture>
-          <h3>gsvg</h3>
+          <figure>
+            <picture>
+              <source type="image/webp"
+                sizes="(min-width: 800px) calc(33.3vw - 2em), (min-width: 400px) calc(50vw - 2em), calc(100vw - 2em)"
+                srcset="/img-out/blue-triangles-500.webp 500w, /img-out/blue-triangles-300.webp 300w">
+              <source type="image/jpeg"
+                sizes="(min-width: 800px) calc(33.3vw - 2em), (min-width: 400px) calc(50vw - 2em), calc(100vw - 2em)"
+                srcset="/img-out/blue-triangles-500.jpg 500w, /img-out/blue-triangles-300.jpg 300w">
+              <img alt="placeholder" src="/img-out/blue-triangles-300.jpg">
+            </picture>
+            <figcaption>Photo by <a href="https://unsplash.com/photos/gcINRBbUxl0">Ash Edmonds</a> on <a href="https://unsplash.com/">Unsplash</a></figcaption>
+          </figure>
           <a class="github icon" href="https://github.com/noahbrenner/gsvg">noahbrenner/gsvg</a>
         </article>
 
         <article>
-          <img alt="placeholder" src="/img/nb.svg">
+          <figure>
+            <img alt="placeholder" src="img-out/tomatillos-300.webp">
+            <figcaption>Photo by <a href="https://unsplash.com/photos/l2AnTPLBzBk">Natalie Walters</a> on <a href="https://unsplash.com/">Unsplash</a></figcaption>
+          </figure>
           <h3>Fresh Tomatillos</h3>
           <a class="github icon" href="https://github.com/noahbrenner/fresh-tomatillos">noahbrenner/fresh-tomatillos</a>
         </article>
 
         <article>
-          <img alt="placeholder" src="/img/nb.svg">
+          <figure>
+            <img alt="placeholder" src="/img/screenshot.png">
+          </figure>
           <h3>This website!</h3>
           <a class="github icon" href="https://github.com/noahbrenner/noahbrenner.github.io">noahbrenner/noahbrenner.github.io</a>
         </article>
 
       </section>
     </main>
+
+    <footer>
+      <ul>
+        <li>Photo at top by <a href="https://unsplash.com/photos/_yMciiStJyY">Maik Jonietz</a> on <a href="https://unsplash.com/">Unsplash</a>.</li>
+        <li><a href="https://unsplash.com/">Zocial icons</a> by <a href="http://www.smcllns.com/">Sam Collins</a>.</li>
+      </ul>
+    </footer>
+
     <!-- Make external SVG work in IE 9-11, thanks to jonathantneal/svg4everybody -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/svg4everybody/2.1.9/svg4everybody.min.js"></script>
     <script>svg4everybody();</script>
