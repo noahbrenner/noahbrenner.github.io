@@ -4,10 +4,13 @@
   zoom: 1.0;
 }
 
+/* TODO: Uncomment this once the standard is accepted. It doesn't yet validate. */
+/*
 @viewport {
   width: extend-to-zoom;
   zoom: 1.0;
 }
+*/
 
 *, :before, :after {
   -webkit-box-sizing: border-box;
