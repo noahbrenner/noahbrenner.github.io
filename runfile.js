@@ -1,11 +1,21 @@
 'use strict';
 
+const del = require('del');
 const globby = require('globby');
+const makeDir = require('make-dir');
 const {run, help} = require('runjs');
 
 const makeImgSizes = require('./make-img-sizes');
 
-async function timePromiseFunctions(...functions) {
+async function taskWrapper(...functions) {
+    try {
+        await makeDir('img-out');
+    } catch (err) {
+        if (err.code !== 'EEXIST') {
+            throw err;
+        }
+    }
+
     const t1 = new Date;
     await Promise.all(functions.map((fn) => fn()));
     const t2 = new Date;
@@ -13,6 +23,10 @@ async function timePromiseFunctions(...functions) {
 }
 
 // === Tasks === //
+
+function clean() {
+    return del('img-out/*');
+}
 
 function _hero() {
     return makeImgSizes({
@@ -34,16 +48,17 @@ async function _featured() {
     });
 }
 
-const hero = timePromiseFunctions.bind(null, _hero);
+const hero = taskWrapper.bind(null, _hero);
 help(hero, 'Resize Hero image');
 
-const featured = timePromiseFunctions.bind(null, _featured);
+const featured = taskWrapper.bind(null, _featured);
 help(featured, 'Resize featured images');
 
-const images = timePromiseFunctions.bind(null, _hero, _featured);
+const images = taskWrapper.bind(null, _hero, _featured);
 help(images, 'Resize all images');
 
 module.exports = {
+    clean,
     images,
     hero,
     featured
