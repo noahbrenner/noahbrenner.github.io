@@ -8,16 +8,16 @@ View Noah's portfolio at: https://noahbrenner.github.io
 Building
 --------
 
-Currently, only images are generated programmatically, though this is likely to change.
+Currently, images are generated separately from the rest of the site content because they're hosted separately. The build process and hosting will be unified soon.
 
 The generated images are several different sizes (8 as of this writing) of several different filetypes (`.webp` and `.jpg`) of several different images (4 as of this writing). That adds up to (or multiplies up to?) a lot of generated files, so it can take a while and can eat up a lot of resources in the process. I plan to improve this soon by using [Bluebird](https://github.com/petkaantonov/bluebird/) Promises with their built-in concurrency limiting.
 
 ### Install dependencies
 
-To generate the images, you'll first need to install:
+Make sure the following are installed:
 
 * [Node.js](https://nodejs.org/) >= 7.6
-* [GraphicsMagick](http://www.graphicsmagick.org/README.html#installation)
+* [GraphicsMagick](http://www.graphicsmagick.org/README.html#installation) (only required for building images)
 
 With Node installed (and thus [npm](https://www.npmjs.com/), which comes with it), you can locally install the other project dependencies. After cloning this repo, just run:
 
@@ -30,6 +30,14 @@ Optionally, you might install [runjs](https://github.com/pawelgalazka/runjs) glo
 
 ```bash
 npm install --global npmjs
+```
+
+### Build main website content
+
+The following command will build the website in the `dist/` directory:
+
+```bash
+npm run build
 ```
 
 ### Generate images
