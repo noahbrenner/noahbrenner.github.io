@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - node
+branches:
+  except:
+    # GitHub requires deployment to master for user pages.
+    # We don't want to run any tasks on it since it's the deployment target.
+    - master
+script:
+  - npm run build
+deploy:
+  provider: pages
+  github-token: $GITHUB_TOKEN
+  skip-cleanup: true
+  keep-history: false
+  on:
+    branch: source
+  target-branch: master
+  local-dir: dist
