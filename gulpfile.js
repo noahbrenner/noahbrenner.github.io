@@ -2,15 +2,15 @@ const del = require('del');
 const gulp = require('gulp');
 
 const PATHS = {
-    src: 'src/**/*',
-    dest: 'dist/'
+  src: 'src/**/*',
+  dest: 'dist/'
 };
 
 /* === Task Functions === */
 
 /** Clean the output directory. */
 function clean() {
-    return del([PATHS.dest]);
+  return del([PATHS.dest]);
 }
 
 /** Copy all source files.
@@ -20,8 +20,8 @@ function clean() {
  * files are handled in this single task.
  */
 function allSrcFiles() {
-    return gulp.src(PATHS.src)
-        .pipe(gulp.dest(PATHS.dest));
+  return gulp.src(PATHS.src)
+    .pipe(gulp.dest(PATHS.dest));
 }
 
 /* === Exported Tasks === */
