@@ -1,0 +1,45 @@
+// This file configures rules that do not require TypeScript type information.
+// Excluding such checks allows eslint to run more quickly when using this file.
+// To run *all* eslint checks, use `.eslintrc.full.json` instead.
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2020": true
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "object-curly-spacing": ["error", "never"],
+
+    // Use named exports for more consistent import naming
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
+
+    // Allow importing dev dependencies from build scripts
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": true
+    }],
+
+    // Use type inference to reduce duplicated definitions (types and values)
+    "@typescript-eslint/explicit-function-return-type": "off"
+  },
+  "overrides": [{
+    "files": ["src/**/*.ts"],
+    "rules": {
+      "import/no-extraneous-dependencies": ["error", {
+        "devDependencies": false
+      }]
+    }
+  }]
+}

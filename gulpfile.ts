@@ -1,9 +1,9 @@
-const del = require('del');
-const gulp = require('gulp');
+import * as del from 'del';
+import * as gulp from 'gulp';
 
 const PATHS = {
   src: 'src/**/*',
-  dest: 'dist/'
+  dest: 'dist/',
 };
 
 /* === Task Functions === */
@@ -26,4 +26,4 @@ function allSrcFiles() {
 
 /* === Exported Tasks === */
 
-exports.build = gulp.series(clean, allSrcFiles);
+export const build = gulp.series(clean, allSrcFiles);

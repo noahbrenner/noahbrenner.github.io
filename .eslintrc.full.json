@@ -1,0 +1,11 @@
+// This file adds linting rules that require TypeScript type information.
+// Linting is slower than with `.eslintrc.json`, but is more thorough.
+{
+  "extends": [
+    "./.eslintrc.json",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}
