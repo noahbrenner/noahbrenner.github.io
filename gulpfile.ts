@@ -4,16 +4,7 @@ import {terser} from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import {rollup} from './lib/gulp-rollup';
 
-const PATHS = {
-  srcRoot: 'src/',
-  src: 'src/**/*',
-  dest: 'dist/',
-
-  /** The JS source entry file (any files imported by it are *not* included) */
-  js: 'src/js/scripts.ts',
-} as const;
-
-/* === Task Functions === */
+import {PATHS, OPTIONS} from './config';
 
 /** Clean the output directory. */
 export function clean() {
@@ -31,30 +22,22 @@ function allSrcFiles() {
     .pipe(gulp.dest(PATHS.dest));
 }
 
+/** Compile and minify JavaScript */
 export function js() {
-  // The whole JS build process is handled via rollup, we're only piping
-  // everything through gulp to make BrowserSync live-reloading simpler
-  // (once it's implemented)
+  /*
+   * All of the JS build steps are handled via rollup.  The only reason we're
+   * piping through gulp (instead of just returnin a promise) is to simplify
+   * the configuration for BrowserSync live-reloading (once it's implemented).
+   */
   return gulp.src(PATHS.js, {base: PATHS.srcRoot})
     .pipe(rollup({
       plugins: [
-        typescript({
-          check: false, // Faster, and we lint and type check separately
-          clean: true, // A little slower, but more robust
-          tsconfigOverride: {
-            compilerOptions: {
-              // Needed by rollup (gulpfile.ts via ts-node needs "module")
-              module: 'ESNext',
-            },
-          },
-        }),
+        typescript(OPTIONS.rollupTypescript),
         terser(),
       ],
     }))
     .pipe(gulp.dest(PATHS.dest));
 }
-
-/* === Exported Tasks === */
 
 const buildTasks = [
   clean,
