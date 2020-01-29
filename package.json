@@ -3,7 +3,7 @@
   "description": "Noah Brenner's portfolio website.",
   "scripts": {
     "build": "gulp build",
-    "lint": "eslint . --config .eslintrc.full.json --ignore-path .gitignore --ext .ts",
+    "lint": "tsc --project . --noEmit && eslint . --config .eslintrc.full.json --ignore-path .gitignore --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
