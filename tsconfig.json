@@ -2,9 +2,11 @@
   "compilerOptions": {
     "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
     "importHelpers": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "newLine": "lf",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -14,6 +16,10 @@
   },
   "include": [
     "*",
-    "src/**/*"
+    "lib/",
+    "src/"
+  ],
+  "exclude": [
+    "node_modules/"
   ]
 }
