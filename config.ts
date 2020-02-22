@@ -1,15 +1,68 @@
 import typescript from 'rollup-plugin-typescript2';
 
+import {ResizeImagesOptions} from './lib/gulp-resize-images';
+
 export const PATHS = {
-  srcRoot: 'src/',
-  src: 'src/**/*',
-  dest: 'dist/',
+  srcRoot: 'src/' as const,
+  src: 'src/**/*' as const,
+  dest: 'dist/' as const,
 
   /** The JS source entry file (any files imported by it are *not* included) */
-  js: 'src/js/scripts.ts',
-} as const;
+  js: 'src/js/scripts.ts' as const,
+  heroImage: 'img-src/code.jpg' as const,
+  featuredImages: ['img-src/*' as const, '!img-src/code.jpg' as const],
+  images: 'img-src/*' as const,
+};
 
 /* === Plugin options === */
+
+const resizeImagesBase: Pick<ResizeImagesOptions, 'formats'> = {
+  formats: [{
+    filetype: 'jpeg',
+    formatOptions: {
+      quality: 80,
+      progressive: true,
+    },
+  }, {
+    filetype: 'webp',
+    formatOptions: {
+      quality: 80,
+      alphaQuality: 0,
+      lossless: false,
+      reductionEffort: 6,
+    },
+  }],
+};
+
+const resizeImagesHero: ResizeImagesOptions = {
+  ...resizeImagesBase,
+  aspectRatio: 2 / 1,
+  widths: [
+    320, // arbitrary minimum
+    475,
+    600,
+    850, // max @ 1x
+    1000,
+    1275, // max @ 1.5x
+    1500,
+    1700, // max @ 2x
+  ],
+};
+
+const resizeImagesFeatured: ResizeImagesOptions = {
+  ...resizeImagesBase,
+  aspectRatio: 3 / 2,
+  widths: [
+    260, // Large viewport @ 1x
+    300, // Small viewport pause @ 1x
+    390, // Large viewport @ 1.5x
+    450, // Small viewport pause @ 1.5x
+    520, // Large viewport @ 2x
+    600, // Small viewport pause @ 2x
+    700,
+    770, // largest size @ 2x
+  ],
+};
 
 const rollupTypescript: Parameters<typeof typescript>[0] = {
   check: false, // Faster (we lint and type check separately)
@@ -23,5 +76,7 @@ const rollupTypescript: Parameters<typeof typescript>[0] = {
 };
 
 export const OPTIONS = {
+  resizeImagesHero,
+  resizeImagesFeatured,
   rollupTypescript,
 } as const;
