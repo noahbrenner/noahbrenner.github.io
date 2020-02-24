@@ -20,13 +20,13 @@ const resizeImagesBase: Pick<ResizeImagesOptions, 'formats'> = {
   formats: [{
     filetype: 'jpeg',
     formatOptions: {
-      quality: 80,
+      quality: 77,
       progressive: true,
     },
   }, {
     filetype: 'webp',
     formatOptions: {
-      quality: 80,
+      quality: 76,
       alphaQuality: 0,
       lossless: false,
       reductionEffort: 6,
