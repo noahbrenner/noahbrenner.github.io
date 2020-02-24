@@ -19,7 +19,7 @@ export function clean() {
  * processes for each type of resource.
  */
 function allSrcFiles() {
-  return gulp.src([PATHS.src, `!${PATHS.js}`])
+  return gulp.src([PATHS.src, '!src/**/*.ts', `!${PATHS.images}`])
     .pipe(gulp.dest(PATHS.dest));
 }
 
@@ -42,14 +42,14 @@ export function js() {
 
 /** Process hero image */
 export function hero() {
-  return gulp.src(PATHS.heroImage)
+  return gulp.src(PATHS.heroImage, {base: PATHS.srcRoot})
     .pipe(resizeImages(OPTIONS.resizeImagesHero))
     .pipe(gulp.dest(PATHS.dest));
 }
 
 /** Process featured project images */
 export function featured() {
-  return gulp.src(PATHS.featuredImages)
+  return gulp.src(PATHS.featuredImages, {base: PATHS.srcRoot})
     .pipe(resizeImages(OPTIONS.resizeImagesFeatured))
     .pipe(gulp.dest(PATHS.dest));
 }

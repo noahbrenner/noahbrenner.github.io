@@ -9,9 +9,9 @@ export const PATHS = {
 
   /** The JS source entry file (any files imported by it are *not* included) */
   js: 'src/js/scripts.ts' as const,
-  heroImage: 'img-src/code.jpg' as const,
-  featuredImages: ['img-src/*' as const, '!img-src/code.jpg' as const],
-  images: 'img-src/*' as const,
+  heroImage: 'src/img/code.jpg' as const,
+  featuredImages: ['src/img/*.{jpg,png}' as const, '!src/img/code.jpg' as const],
+  images: 'src/img/*.{jpg,png}' as const,
 };
 
 /* === Plugin options === */
