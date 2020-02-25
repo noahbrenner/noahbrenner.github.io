@@ -38,6 +38,12 @@ const resizeImagesHero: ResizeImagesOptions = {
   ...resizeImagesBase,
   aspectRatio: 2 / 1,
   widths: [
+    /* Rendered sizes on website:
+     * - 320-850 @ 1x (arbitrary minimum)
+     * - 640-1700 @ 2x
+     *
+     * Total Range: 320-1700
+     */
     320, // arbitrary minimum
     475,
     600,
@@ -53,6 +59,18 @@ const resizeImagesFeatured: ResizeImagesOptions = {
   ...resizeImagesBase,
   aspectRatio: 3 / 2,
   widths: [
+    /* Rendered sizes on website:
+     * Breakpoints @ 1x:
+     * - Small: 220-300 (arbitrary minimum, pause @ 300 for max-width)
+     * - Medium: 235-385
+     * - Large: 260 (fixed width)
+     *
+     * Ranges:
+     * - 220-385 @ 1x (w/ pauses at 300 & 260)
+     * - 440-770 @ 2x (w/ pauses at 600 & 520)
+     *
+     * Total Range: 220-770 (w/ stops at 300, 600, 260, & 520)
+     */
     260, // Large viewport @ 1x
     300, // Small viewport pause @ 1x
     390, // Large viewport @ 1.5x
