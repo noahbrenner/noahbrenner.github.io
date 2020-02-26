@@ -2,9 +2,10 @@ import del from 'del';
 import * as gulp from 'gulp';
 import {terser} from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
-import {rollup} from './lib/gulp-rollup';
 
 import {PATHS, OPTIONS} from './config';
+import {resizeImages} from './lib/gulp-resize-images';
+import {rollup} from './lib/gulp-rollup';
 
 /** Clean the output directory. */
 export function clean() {
@@ -18,7 +19,7 @@ export function clean() {
  * processes for each type of resource.
  */
 function allSrcFiles() {
-  return gulp.src([PATHS.src, `!${PATHS.js}`])
+  return gulp.src([PATHS.src, '!src/**/*.ts', `!${PATHS.images}`])
     .pipe(gulp.dest(PATHS.dest));
 }
 
@@ -39,9 +40,26 @@ export function js() {
     .pipe(gulp.dest(PATHS.dest));
 }
 
+/** Process hero image */
+export function hero() {
+  return gulp.src(PATHS.heroImage, {base: PATHS.srcRoot})
+    .pipe(resizeImages(OPTIONS.resizeImagesHero))
+    .pipe(gulp.dest(PATHS.dest));
+}
+
+/** Process featured project images */
+export function featured() {
+  return gulp.src(PATHS.featuredImages, {base: PATHS.srcRoot})
+    .pipe(resizeImages(OPTIONS.resizeImagesFeatured))
+    .pipe(gulp.dest(PATHS.dest));
+}
+
+/** Process all images */
+export const images = gulp.parallel(hero, featured);
+
 const buildTasks = [
   clean,
-  gulp.parallel(allSrcFiles, js),
+  gulp.parallel(allSrcFiles, js, images),
 ];
 
 export const build = gulp.series(...buildTasks);
