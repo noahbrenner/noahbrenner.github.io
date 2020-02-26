@@ -45,10 +45,8 @@ const resizeImagesHero: ResizeImagesOptions = {
      * Total Range: 320-1700
      */
     320, // arbitrary minimum
-    475,
-    600,
+    500,
     850, // max @ 1x
-    1000,
     1275, // max @ 1.5x
     1500,
     1700, // max @ 2x
@@ -72,12 +70,9 @@ const resizeImagesFeatured: ResizeImagesOptions = {
      * Total Range: 220-770 (w/ stops at 300, 600, 260, & 520)
      */
     260, // Large viewport @ 1x
-    300, // Small viewport pause @ 1x
     390, // Large viewport @ 1.5x
-    450, // Small viewport pause @ 1.5x
     520, // Large viewport @ 2x
-    600, // Small viewport pause @ 2x
-    700,
+    650,
     770, // largest size @ 2x
   ],
 };
