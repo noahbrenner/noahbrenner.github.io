@@ -37,13 +37,12 @@
       "devDependencies": true
     }],
 
-    // Use type inference to reduce duplicated definitions (types and values)
-    "@typescript-eslint/explicit-function-return-type": "off",
+    // This rule doesn't yet handle TypeScript's `import type` syntax
+    // https://github.com/benmosher/eslint-plugin-import/issues/1667
+    "import/no-duplicates": "off",
 
-    // Allow passing an async function to through2.obj()
-    "@typescript-eslint/no-misused-promises": ["error", {
-        "checksVoidReturn": false
-    }]
+    // Use type inference to reduce duplicated definitions (types and values)
+    "@typescript-eslint/explicit-function-return-type": "off"
   },
   "overrides": [{
     "files": ["src/**/*.ts"],

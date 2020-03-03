@@ -1,11 +1,9 @@
-import {
-  rollup as rollupOriginal,
-  Plugin as RollupPlugin,
-  OutputChunk,
-} from 'rollup';
+import {rollup as rollupOriginal} from 'rollup';
+import type {Plugin as RollupPlugin, OutputChunk} from 'rollup';
 import * as through2 from 'through2';
+// We don't depend on vinyl directly, we just use its types to interop with gulp
 // eslint-disable-next-line import/no-extraneous-dependencies
-import * as Vinyl from 'vinyl'; // Imported only for the type definition
+import type * as Vinyl from 'vinyl';
 
 export function rollup({plugins = [] as RollupPlugin[]} = {}) {
   return through2.obj(async function transform(file: Vinyl, _encoding, callback) {
