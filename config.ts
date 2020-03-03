@@ -1,6 +1,6 @@
-import typescript from 'rollup-plugin-typescript2';
+import type RollupTypescript from 'rollup-plugin-typescript2';
 
-import {ResizeImagesOptions} from './lib/gulp-resize-images';
+import type {ResizeImagesOptions} from './lib/gulp-resize-images';
 
 export const PATHS = {
   srcRoot: 'src/' as const,
@@ -77,7 +77,7 @@ const resizeImagesFeatured: ResizeImagesOptions = {
   ],
 };
 
-const rollupTypescript: Parameters<typeof typescript>[0] = {
+const rollupTypescript: Parameters<typeof RollupTypescript>[0] = {
   check: false, // Faster (we lint and type check separately)
   clean: true, // Don't cache -- a little slower, but more robust
   tsconfigOverride: {

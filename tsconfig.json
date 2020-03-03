@@ -4,6 +4,7 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "importHelpers": true,
+    "importsNotUsedAsValues": "error",
     "lib": ["dom", "es5", "es2019.array"],
     "module": "commonjs",
     "moduleResolution": "node",
