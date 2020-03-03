@@ -38,12 +38,7 @@
     }],
 
     // Use type inference to reduce duplicated definitions (types and values)
-    "@typescript-eslint/explicit-function-return-type": "off",
-
-    // Allow passing an async function to through2.obj()
-    "@typescript-eslint/no-misused-promises": ["error", {
-        "checksVoidReturn": false
-    }]
+    "@typescript-eslint/explicit-function-return-type": "off"
   },
   "overrides": [{
     "files": ["src/**/*.ts"],
