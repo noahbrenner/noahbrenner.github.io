@@ -1,3 +1,4 @@
+import type GulpPug from 'gulp-pug';
 import type RollupTypescript from 'rollup-plugin-typescript2';
 
 import type {ResizeImagesOptions} from './lib/gulp-resize-images';
@@ -79,6 +80,24 @@ const resizeImagesFeatured: ResizeImagesOptions = {
   ],
 };
 
+// These pug options must be defined after the image resizing options
+const gulpPug: GulpPug.Options = {
+  // Use a namespace ("self") for template locals
+  self: true,
+  locals: {
+    img: {
+      hero: {
+        filetypes: ['webp', 'jpeg'],
+        widths: resizeImagesHero.widths,
+      },
+      featured: {
+        filetypes: ['webp', 'jpeg'],
+        widths: resizeImagesFeatured.widths,
+      },
+    },
+  },
+};
+
 const rollupTypescript: Parameters<typeof RollupTypescript>[0] = {
   check: false, // Faster (we lint and type check separately)
   clean: true, // Don't cache -- a little slower, but more robust
@@ -91,6 +110,7 @@ const rollupTypescript: Parameters<typeof RollupTypescript>[0] = {
 };
 
 export const OPTIONS = {
+  gulpPug,
   resizeImagesHero,
   resizeImagesFeatured,
   rollupTypescript,

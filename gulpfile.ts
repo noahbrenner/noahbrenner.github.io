@@ -27,7 +27,7 @@ function allSrcFiles() {
 /** Compile HTML */
 export function html() {
   return gulp.src(PATHS.html)
-    .pipe(pug())
+    .pipe(pug(OPTIONS.gulpPug))
     .pipe(gulp.dest(PATHS.dest));
 }
 

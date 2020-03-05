@@ -9,8 +9,8 @@ block hero
   +pictureAndSources({
     basename: '/img/code',
     sizesAttribute: '(min-width: 850px) 850px, 100vw',
-    filetypes: ['webp', 'jpeg'],
-    widths: [320, 500, 850, 1275, 1500, 1700],
+    filetypes: self.img.hero.filetypes,
+    widths: self.img.hero.widths,
   })
     img(
       src="/img/code-850.jpeg"
@@ -48,8 +48,8 @@ block main
         +pictureAndSources({
           basename: '/img/blue-triangles',
           sizesAttribute: featuredImageSizes,
-          filetypes: ['webp', 'jpeg'],
-          widths: [260, 390, 520, 650, 770],
+          filetypes: self.img.featured.filetypes,
+          widths: self.img.featured.widths,
         })
           img(
             src="/img/blue-triangles-390.jpeg"
