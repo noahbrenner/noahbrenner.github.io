@@ -7,6 +7,8 @@ export const PATHS = {
   src: 'src/**/*' as const,
   dest: 'dist/' as const,
 
+  /** The HTML entry file (any template and mixin files are *not* included) */
+  html: 'src/html/index.pug' as const,
   /** The JS source entry file (any files imported by it are *not* included) */
   js: 'src/js/scripts.ts' as const,
   heroImage: 'src/img/code.jpg' as const,

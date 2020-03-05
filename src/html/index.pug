@@ -1,0 +1,74 @@
+extends layout.pug
+include mixins.pug
+
+append header
+  h1 Noah Brenner
+  p Full-stack Developer
+
+block hero
+  +pictureAndSources({
+    basename: '/img/code',
+    sizesAttribute: '(min-width: 850px) 850px, 100vw',
+    filetypes: ['webp', 'jpeg'],
+    widths: [320, 500, 850, 1275, 1500, 1700],
+  })
+    img(
+      src="/img/code-850.jpeg"
+      alt="Closeup photo of CSS code in a programmer's text editor."
+    ).hero.full-width
+
+block main
+  address
+    ul
+      li
+        //- This <a> tag's `href` is populated by JavaScript at runtime
+        a.email.icon
+          | #[span#first-name Noah] (at) Noah #[span#last-name Brenner] (dot) com
+      li
+        a(href="https://www.linkedin.com/in/noahbrenner/").linkedin.icon
+          | LinkedIn Profile
+      li
+        a(href="https://github.com/noahbrenner/").github.icon
+          | GitHub Profile
+
+  section.featured-work.full-width
+    h2 Featured Work
+
+    -
+      const featuredImageSizes = [
+        '(min-width: 850px) 260px',
+        '(min-width: 500px) calc(50vw - 15px)',
+        '(min-width: 400px) 300px',
+        'calc(100vw - 100px)',
+      ].join(', ');
+
+    article
+      h3 gsvg #[span.subtitle (Git-friendly SVG)]
+      figure
+        +pictureAndSources({
+          basename: '/img/blue-triangles',
+          sizesAttribute: featuredImageSizes,
+          filetypes: ['webp', 'jpeg'],
+          widths: [260, 390, 520, 650, 770],
+        })
+          img(
+            src="/img/blue-triangles-390.jpeg"
+            alt="Electric-blue geometric shapes in three dimensions."
+          )
+        +figcaptionUnsplashCredit('Ash Edmonds', 'gcINRBbUxl0')
+      p Deterministic SVG code prettifier
+      a(href="https://github.com/noahbrenner/gsvg").github.icon
+        | noahbrenner/gsvg
+      ul
+        li Node.js
+        li npm package
+        li API/CLI
+
+block footer
+  - const heroPhotoUrl = 'https://unsplash.com/photos/_yMciiStJyY';
+  - const unsplashUrl = 'https://unsplash.com/';
+  - const zocialUrl = 'https://github.com/smcllns/css-social-buttons';
+  - const zocialCreatorUrl = 'http://www.smcllns.com/';
+  ul
+    li Photo at top by #[a(href=heroPhotoUrl) Maik Jonietz] on #[a(href=unsplashUrl) Unsplash].
+    li #[a(href=zocialUrl) Zocial icons] by #[a(href=zocialCreatorUrl) Sam Collins].

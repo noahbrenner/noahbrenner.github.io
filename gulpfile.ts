@@ -1,5 +1,6 @@
 import del from 'del';
 import * as gulp from 'gulp';
+import pug from 'gulp-pug';
 import {terser} from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
@@ -19,7 +20,14 @@ export function clean() {
  * processes for each type of resource.
  */
 function allSrcFiles() {
-  return gulp.src([PATHS.src, '!src/**/*.ts', `!${PATHS.images}`])
+  return gulp.src([PATHS.src, '!src/**/*.{pug,html}', '!src/**/*.ts', `!${PATHS.images}`])
+    .pipe(gulp.dest(PATHS.dest));
+}
+
+/** Compile HTML */
+export function html() {
+  return gulp.src(PATHS.html)
+    .pipe(pug())
     .pipe(gulp.dest(PATHS.dest));
 }
 
@@ -59,7 +67,7 @@ export const images = gulp.parallel(hero, featured);
 
 const buildTasks = [
   clean,
-  gulp.parallel(allSrcFiles, js, images),
+  gulp.parallel(allSrcFiles, html, js, images),
 ];
 
 export const build = gulp.series(...buildTasks);
