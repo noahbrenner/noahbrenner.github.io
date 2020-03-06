@@ -13,14 +13,9 @@ export function clean() {
   return del([PATHS.dest]);
 }
 
-/**
- * Copy all source files to output directory.
- *
- * This function is a temporary stand-in before establishing separate build
- * processes for each type of resource.
- */
-function allSrcFiles() {
-  return gulp.src([PATHS.src, '!src/**/*.{pug,html}', '!src/**/*.ts', `!${PATHS.images}`])
+/** Copy static files */
+export function staticFiles() {
+  return gulp.src(PATHS.static)
     .pipe(gulp.dest(PATHS.dest));
 }
 
@@ -28,6 +23,13 @@ function allSrcFiles() {
 export function html() {
   return gulp.src(PATHS.html)
     .pipe(pug(OPTIONS.gulpPug))
+    .pipe(gulp.dest(PATHS.dest));
+}
+
+// TODO Compile from SCSS and minify
+/** Copy CSS */
+export function css() {
+  return gulp.src(PATHS.css)
     .pipe(gulp.dest(PATHS.dest));
 }
 
@@ -67,7 +69,7 @@ export const images = gulp.parallel(hero, featured);
 
 const buildTasks = [
   clean,
-  gulp.parallel(allSrcFiles, html, js, images),
+  gulp.parallel(staticFiles, html, css, js, images),
 ];
 
 export const build = gulp.series(...buildTasks);

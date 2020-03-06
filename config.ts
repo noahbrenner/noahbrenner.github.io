@@ -8,13 +8,14 @@ export const PATHS = {
   src: 'src/**/*' as const,
   dest: 'dist/' as const,
 
+  static: ['src/*.{png,ico}' as const, 'src/**/*.svg' as const],
   /** The HTML entry file (any template and mixin files are *not* included) */
   html: 'src/html/index.pug' as const,
+  css: 'src/css/styles.css' as const,
   /** The JS source entry file (any files imported by it are *not* included) */
   js: 'src/js/scripts.ts' as const,
   heroImage: 'src/img/code.jpg' as const,
   featuredImages: ['src/img/*.{jpg,png}' as const, '!src/img/code.jpg' as const],
-  images: 'src/img/*.{jpg,png}' as const,
 };
 
 /* === Plugin options === */
