@@ -1,0 +1,122 @@
+extends layout.pug
+include mixins.pug
+
+block title
+  | Noah Brenner — Portfolio
+
+append header
+  h1 Noah Brenner
+  p Full-stack Developer
+
+block hero
+  +pictureAndSources({
+    basename: '/img/code',
+    sizesAttribute: '(min-width: 850px) 850px, 100vw',
+    filetypes: self.img.hero.filetypes,
+    widths: self.img.hero.widths,
+  })
+    img(
+      src="/img/code-850.jpeg"
+      alt="Closeup photo of CSS code in a programmer's text editor."
+    ).hero.full-width
+
+block main
+  address
+    ul
+      li
+        //- This <a> tag's `href` is populated by JavaScript at runtime
+        a.email.icon
+          | #[span#first-name Noah] (at) Noah #[span#last-name Brenner] (dot) com
+      li
+        a(href="https://www.linkedin.com/in/noahbrenner/").linkedin.icon
+          | LinkedIn Profile
+      li
+        a(href="https://github.com/noahbrenner/").github.icon
+          | GitHub Profile
+
+  section.featured-work.full-width
+    h2 Featured Work
+
+    -
+      const featuredImageSizes = [
+        '(min-width: 850px) 260px',
+        '(min-width: 500px) calc(50vw - 15px)',
+        '(min-width: 400px) 300px',
+        'calc(100vw - 100px)',
+      ].join(', ');
+
+    article
+      h3 gsvg #[span.subtitle (Git-friendly SVG)]
+      figure
+        +pictureAndSources({
+          basename: '/img/blue-triangles',
+          sizesAttribute: featuredImageSizes,
+          filetypes: self.img.featured.filetypes,
+          widths: self.img.featured.widths,
+        })
+          img(
+            src="/img/blue-triangles-390.jpeg"
+            alt="Electric-blue geometric shapes in three dimensions."
+          )
+        +figcaptionUnsplashCredit('Ash Edmonds', 'gcINRBbUxl0')
+      p Deterministic SVG code prettifier
+      a(href="https://github.com/noahbrenner/gsvg").github.icon
+        | noahbrenner/gsvg
+      ul
+        li Node.js
+        li npm package
+        li API/CLI
+
+    article
+      h3 Fresh Tomatillos
+      figure
+        +pictureAndSources({
+          basename: '/img/tomatillos',
+          sizesAttribute: featuredImageSizes,
+          filetypes: self.img.featured.filetypes,
+          widths: self.img.featured.widths,
+        })
+          img(
+            src="/img/tomatillos-390.jpeg"
+            alt="Small cartons of fruits and vegetables, including some tomatillos."
+          )
+        +figcaptionUnsplashCredit('Natalie Walters', 'l2AnTPLBzBk')
+      p Movie trailer website generator
+      a(href="https://github.com/noahbrenner/fresh-tomatillos").github.icon
+        | noahbrenner/fresh-tomatillos
+      ul
+        li Python 2/3
+        li HTML
+        li CSS
+        li JavaScript
+
+    article
+      h3 This website!
+      figure
+        +pictureAndSources({
+          basename: '/img/screenshot',
+          sizesAttribute: featuredImageSizes,
+          filetypes: self.img.featured.filetypes,
+          widths: self.img.featured.widths,
+        })
+          img(
+            src="/img/screenshot-390.jpeg"
+            alt="A screenshot of the top of this website."
+          )
+      p Noah's portfolio website
+      a(href="https://github.com/noahbrenner/noahbrenner.github.io").github.icon
+        | noahbrenner/noahbrenner.github.io
+      ul
+        li Pug
+        li CSS
+        li TypeScript
+        li gulp
+
+block footer
+  - const heroPhotoUrl = 'https://unsplash.com/photos/_yMciiStJyY';
+  - const unsplashUrl = 'https://unsplash.com/';
+  - const zocialUrl = 'https://github.com/smcllns/css-social-buttons';
+  - const zocialCreatorUrl = 'http://www.smcllns.com/';
+  ul
+    li Photo at top by #[a(href=heroPhotoUrl) Maik Jonietz] on #[a(href=unsplashUrl) Unsplash].
+    li #[a(href=zocialUrl) Zocial icons] by #[a(href=zocialCreatorUrl) Sam Collins].

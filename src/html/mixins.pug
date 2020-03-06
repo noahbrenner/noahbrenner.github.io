@@ -1,0 +1,17 @@
+mixin pictureAndSources({basename, sizesAttribute, filetypes, widths})
+  picture
+    each filetype in filetypes
+      source(
+        type=`image/${filetype}`
+        sizes=sizesAttribute
+        srcset=
+          widths
+            .map((width) => `${basename}-${width}.${filetype} ${width}w`)
+            .join(', ')
+      )
+    block
+
+mixin figcaptionUnsplashCredit(photographer, imageId)
+  - const photoUrl = `https://unsplash.com/photos/${imageId}`;
+  - const unsplashUrl = 'https://unsplash.com/';
+  figcaption Photo by #[a(href=photoUrl)= photographer] on #[a(href=unsplashUrl) Unsplash]
