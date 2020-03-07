@@ -1,12 +1,20 @@
 import del from 'del';
 import * as gulp from 'gulp';
 import pug from 'gulp-pug';
+import sass from 'gulp-sass';
+import nodeSass from 'node-sass';
 import {terser} from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
 import {PATHS, OPTIONS} from './config';
 import {resizeImages} from './lib/gulp-resize-images';
 import {rollup} from './lib/gulp-rollup';
+
+// The node-sass docs recommend setting the `compiler` property explicitly, but
+// the types defined for the package don't define that property.
+// See: https://github.com/dlmanning/gulp-sass#basic-usage
+type GulpSass = typeof sass & {compiler: typeof nodeSass};
+(sass as GulpSass).compiler = nodeSass;
 
 /** Clean the output directory. */
 export function clean() {
@@ -30,6 +38,7 @@ export function html() {
 /** Copy CSS */
 export function css() {
   return gulp.src(PATHS.css)
+    .pipe(sass(OPTIONS.gulpSass).on('error', sass.logError))
     .pipe(gulp.dest(PATHS.dest));
 }
 
