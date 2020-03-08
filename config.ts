@@ -1,6 +1,9 @@
+import type GulpAutoprefixer from 'gulp-autoprefixer';
 import type GulpPug from 'gulp-pug';
+import type GulpSass from 'gulp-sass';
 import type RollupTypescript from 'rollup-plugin-typescript2';
 
+import type {cleanCss as GulpCleanCss} from './lib/gulp-clean-css';
 import type {ResizeImagesOptions} from './lib/gulp-resize-images';
 
 export const PATHS = {
@@ -11,7 +14,7 @@ export const PATHS = {
   static: ['src/*.{png,ico}' as const, 'src/**/*.svg' as const],
   /** The HTML entry file (any template and mixin files are *not* included) */
   html: 'src/html/index.pug' as const,
-  css: 'src/css/styles.css' as const,
+  css: 'src/css/styles.scss' as const,
   /** The JS source entry file (any files imported by it are *not* included) */
   js: 'src/js/scripts.ts' as const,
   heroImage: 'src/img/code.jpg' as const,
@@ -99,6 +102,20 @@ const gulpPug: GulpPug.Options = {
   },
 };
 
+const gulpSass: Parameters<typeof GulpSass>[0] = {
+  outputStyle: 'expanded',
+};
+
+const autoprefixer: Parameters<typeof GulpAutoprefixer>[0] = {
+  cascade: false,
+  // We haven't defined a browserslist, so the default query will apply:
+  // > 0.5%, last 2 versions, Firefox ESR, not dead
+};
+
+const cleanCss: Parameters<typeof GulpCleanCss>[0] = {
+  level: 2,
+};
+
 const rollupTypescript: Parameters<typeof RollupTypescript>[0] = {
   check: false, // Faster (we lint and type check separately)
   clean: true, // Don't cache -- a little slower, but more robust
@@ -111,7 +128,10 @@ const rollupTypescript: Parameters<typeof RollupTypescript>[0] = {
 };
 
 export const OPTIONS = {
+  autoprefixer,
+  cleanCss,
   gulpPug,
+  gulpSass,
   resizeImagesHero,
   resizeImagesFeatured,
   rollupTypescript,
