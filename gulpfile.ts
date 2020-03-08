@@ -8,6 +8,7 @@ import {terser} from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
 import {PATHS, OPTIONS} from './config';
+import {cleanCss} from './lib/gulp-clean-css';
 import {resizeImages} from './lib/gulp-resize-images';
 import {rollup} from './lib/gulp-rollup';
 
@@ -38,9 +39,10 @@ export function html() {
 // TODO Compile from SCSS and minify
 /** Compile CSS */
 export function css() {
-  return gulp.src(PATHS.css)
+  return gulp.src(PATHS.css, {base: PATHS.srcRoot})
     .pipe(sass(OPTIONS.gulpSass).on('error', sass.logError))
     .pipe(autoprefixer(OPTIONS.autoprefixer))
+    .pipe(cleanCss(OPTIONS.cleanCss))
     .pipe(gulp.dest(PATHS.dest));
 }
 

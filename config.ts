@@ -3,6 +3,7 @@ import type GulpPug from 'gulp-pug';
 import type GulpSass from 'gulp-sass';
 import type RollupTypescript from 'rollup-plugin-typescript2';
 
+import type {cleanCss as GulpCleanCss} from './lib/gulp-clean-css';
 import type {ResizeImagesOptions} from './lib/gulp-resize-images';
 
 export const PATHS = {
@@ -111,6 +112,10 @@ const autoprefixer: Parameters<typeof GulpAutoprefixer>[0] = {
   // > 0.5%, last 2 versions, Firefox ESR, not dead
 };
 
+const cleanCss: Parameters<typeof GulpCleanCss>[0] = {
+  level: 2,
+};
+
 const rollupTypescript: Parameters<typeof RollupTypescript>[0] = {
   check: false, // Faster (we lint and type check separately)
   clean: true, // Don't cache -- a little slower, but more robust
@@ -124,6 +129,7 @@ const rollupTypescript: Parameters<typeof RollupTypescript>[0] = {
 
 export const OPTIONS = {
   autoprefixer,
+  cleanCss,
   gulpPug,
   gulpSass,
   resizeImagesHero,
