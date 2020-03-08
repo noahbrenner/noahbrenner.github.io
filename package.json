@@ -18,6 +18,7 @@
   "homepage": "https://noahbrenner.github.io/",
   "devDependencies": {
     "@types/gulp": "~4.0.6",
+    "@types/gulp-autoprefixer": "0.0.32",
     "@types/gulp-sass": "~4.0.0",
     "@types/sharp": "~0.24.0",
     "@types/through2": "~2.0.34",
@@ -28,6 +29,7 @@
     "eslint-config-airbnb-base": "~14.0.0",
     "eslint-plugin-import": "~2.20.1",
     "gulp": "~4.0.2",
+    "gulp-autoprefixer": "~7.0.1",
     "gulp-pug": "~4.0.1",
     "gulp-sass": "~4.0.2",
     "node-sass": "~4.13.1",

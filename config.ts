@@ -1,3 +1,4 @@
+import type GulpAutoprefixer from 'gulp-autoprefixer';
 import type GulpPug from 'gulp-pug';
 import type GulpSass from 'gulp-sass';
 import type RollupTypescript from 'rollup-plugin-typescript2';
@@ -104,6 +105,12 @@ const gulpSass: Parameters<typeof GulpSass>[0] = {
   outputStyle: 'expanded',
 };
 
+const autoprefixer: Parameters<typeof GulpAutoprefixer>[0] = {
+  cascade: false,
+  // We haven't defined a browserslist, so the default query will apply:
+  // > 0.5%, last 2 versions, Firefox ESR, not dead
+};
+
 const rollupTypescript: Parameters<typeof RollupTypescript>[0] = {
   check: false, // Faster (we lint and type check separately)
   clean: true, // Don't cache -- a little slower, but more robust
@@ -116,6 +123,7 @@ const rollupTypescript: Parameters<typeof RollupTypescript>[0] = {
 };
 
 export const OPTIONS = {
+  autoprefixer,
   gulpPug,
   gulpSass,
   resizeImagesHero,

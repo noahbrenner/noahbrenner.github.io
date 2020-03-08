@@ -1,5 +1,6 @@
 import del from 'del';
 import * as gulp from 'gulp';
+import autoprefixer from 'gulp-autoprefixer';
 import pug from 'gulp-pug';
 import sass from 'gulp-sass';
 import nodeSass from 'node-sass';
@@ -35,14 +36,15 @@ export function html() {
 }
 
 // TODO Compile from SCSS and minify
-/** Copy CSS */
+/** Compile CSS */
 export function css() {
   return gulp.src(PATHS.css)
     .pipe(sass(OPTIONS.gulpSass).on('error', sass.logError))
+    .pipe(autoprefixer(OPTIONS.autoprefixer))
     .pipe(gulp.dest(PATHS.dest));
 }
 
-/** Compile and minify JavaScript */
+/** Compile JavaScript */
 export function js() {
   /*
    * All of the JS build steps are handled via rollup.  The only reason we're

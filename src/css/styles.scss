@@ -15,7 +15,6 @@
 *,
 :before,
 :after {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -92,14 +91,8 @@ header {
 }
 
 .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-flow: column wrap;
   flex-flow: column wrap;
-  -ms-flex-pack: distribute;
   justify-content: space-around;
   height: 80px;
 }
@@ -156,14 +149,9 @@ address a {
  */
 
 .featured-work {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   /* I'd prefer space-evenly, but it's not widely supported yet */
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
