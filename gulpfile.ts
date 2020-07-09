@@ -40,7 +40,7 @@ export function html() {
 /** Compile CSS */
 export function css() {
   return gulp.src(PATHS.css, {base: PATHS.srcRoot})
-    .pipe(sass(OPTIONS.gulpSass).on('error', sass.logError))
+    .pipe(sass(OPTIONS.gulpSass).on('error', sass.logError.bind(sass)))
     .pipe(autoprefixer(OPTIONS.autoprefixer))
     .pipe(cleanCss(OPTIONS.cleanCss))
     .pipe(gulp.dest(PATHS.dest));
