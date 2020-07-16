@@ -19,19 +19,21 @@ export interface ResizeImagesOptions {
   formats: FormatSpecifier[];
 }
 
-export function resizeImages(options: ResizeImagesOptions): Transform {
+export function resizeImages(
+  {aspectRatio, widths, formats}: ResizeImagesOptions,
+): Transform {
   return through2.obj(async function _transform(file: Vinyl, _encoding, callback) {
     // Outer loop: filetypes
     // eslint-disable-next-line arrow-body-style
-    await Promise.all(options.formats.flatMap(({filetype, formatOptions}) => {
+    await Promise.all(formats.flatMap(({filetype, formatOptions}) => {
       // Inner loop: widths
-      return options.widths.map(async (width) => {
+      return widths.map(async (width) => {
         const newFile = file.clone();
 
         newFile.contents = await sharp(file.contents as Buffer)
           .resize({
             width,
-            height: Math.round(width / options.aspectRatio),
+            height: Math.round(width / aspectRatio),
             fit: 'cover',
             position: 'north',
             kernel: 'lanczos3',
