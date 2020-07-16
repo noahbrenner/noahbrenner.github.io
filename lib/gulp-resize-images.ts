@@ -1,8 +1,8 @@
+import type {Transform} from 'stream';
+
 import sharp from 'sharp';
 import * as through2 from 'through2';
-// We don't depend on vinyl directly, we just use its types to interop with gulp
-// eslint-disable-next-line import/no-extraneous-dependencies
-import type * as Vinyl from 'vinyl';
+import type * as Vinyl from 'vinyl'; // Using gulp's dependency
 
 interface FormatSpecifier {
   filetype: keyof sharp.FormatEnum;
@@ -19,7 +19,7 @@ export interface ResizeImagesOptions {
   formats: FormatSpecifier[];
 }
 
-export function resizeImages(options: ResizeImagesOptions) {
+export function resizeImages(options: ResizeImagesOptions): Transform {
   return through2.obj(async function _transform(file: Vinyl, _encoding, callback) {
     // Outer loop: filetypes
     // eslint-disable-next-line arrow-body-style

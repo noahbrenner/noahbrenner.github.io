@@ -17,7 +17,6 @@
   "extends": [
     "airbnb-base",
     "plugin:import/typescript",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
@@ -36,10 +35,6 @@
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": true
     }],
-
-    // This rule doesn't yet handle TypeScript's `import type` syntax
-    // https://github.com/benmosher/eslint-plugin-import/issues/1667
-    "import/no-duplicates": "off",
 
     // Use type inference to reduce duplicated definitions (types and values)
     "@typescript-eslint/explicit-function-return-type": "off"

@@ -1,3 +1,5 @@
+import type {Transform} from 'stream';
+
 /*
  * There *is* an existing npm package named `gulp-clean-css` that could serve
  * the purpose of this wrapper, but that package has a couple flaws:
@@ -7,11 +9,9 @@
  */
 import CleanCSS from 'clean-css';
 import * as through2 from 'through2';
-// We don't depend on vinyl directly, we just use its types to interop with gulp
-// eslint-disable-next-line import/no-extraneous-dependencies
-import type * as Vinyl from 'vinyl';
+import type * as Vinyl from 'vinyl'; // Using gulp's dependency
 
-export function cleanCss(options: CleanCSS.OptionsOutput) {
+export function cleanCss(options: CleanCSS.OptionsOutput): Transform {
   return through2.obj((file: Vinyl, _encoding, callback) => {
     const result = new CleanCSS(options)
       .minify(file.contents as Buffer);

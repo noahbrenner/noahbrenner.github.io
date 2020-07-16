@@ -1,3 +1,6 @@
+/* eslint @typescript-eslint/explicit-module-boundary-types: "off"
+   -- Functions are only exported from this file to enable them as gulp tasks */
+
 import del from 'del';
 import * as gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';

@@ -12,7 +12,7 @@ function getElementTextById(id: string) {
  * We're making spam bots work a little harder by avoiding writing a literal
  * email address anywhere, but we still want it clickable by humans.
  */
-export function linkifyEmail() {
+export function linkifyEmail(): void {
   const firstName = getElementTextById('first-name').toLowerCase();
   const lastName = getElementTextById('last-name').toLowerCase();
 
