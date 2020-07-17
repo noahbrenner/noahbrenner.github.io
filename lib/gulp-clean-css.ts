@@ -1,4 +1,4 @@
-import type {Transform} from 'stream';
+import {Transform} from 'stream';
 
 /*
  * There *is* an existing npm package named `gulp-clean-css` that could serve
@@ -8,17 +8,19 @@ import type {Transform} from 'stream';
  *   `clean-css` could not be used until the wrapper package itself was updated.
  */
 import CleanCSS from 'clean-css';
-import * as through2 from 'through2';
 import type * as Vinyl from 'vinyl'; // Using gulp's dependency
 
 export function cleanCss(options: CleanCSS.OptionsOutput): Transform {
-  return through2.obj((file: Vinyl, _encoding, callback) => {
-    const result = new CleanCSS(options)
-      .minify(file.contents as Buffer);
+  return new Transform({
+    objectMode: true,
+    transform(file: Vinyl, _encoding, callback) {
+      const result = new CleanCSS(options)
+        .minify(file.contents as Buffer);
 
-    const newFile = file.clone();
-    newFile.contents = Buffer.from(result.styles);
+      const newFile = file.clone();
+      newFile.contents = Buffer.from(result.styles);
 
-    callback(null, newFile);
+      callback(null, newFile);
+    },
   });
 }

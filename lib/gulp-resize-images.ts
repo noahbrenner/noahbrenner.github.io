@@ -1,7 +1,6 @@
-import type {Transform} from 'stream';
+import {Transform} from 'stream';
 
 import sharp from 'sharp';
-import * as through2 from 'through2';
 import type * as Vinyl from 'vinyl'; // Using gulp's dependency
 
 interface FormatSpecifier {
@@ -22,31 +21,34 @@ export interface ResizeImagesOptions {
 export function resizeImages(
   {aspectRatio, widths, formats}: ResizeImagesOptions,
 ): Transform {
-  return through2.obj(async function _transform(file: Vinyl, _encoding, callback) {
-    // Outer loop: filetypes
-    // eslint-disable-next-line arrow-body-style
-    await Promise.all(formats.flatMap(({filetype, formatOptions}) => {
-      // Inner loop: widths
-      return widths.map(async (width) => {
-        const newFile = file.clone();
+  return new Transform({
+    objectMode: true,
+    async transform(file: Vinyl, _encoding, callback) {
+      // Outer loop: filetypes
+      // eslint-disable-next-line arrow-body-style
+      await Promise.all(formats.flatMap(({filetype, formatOptions}) => {
+        // Inner loop: widths
+        return widths.map(async (width) => {
+          const newFile = file.clone();
 
-        newFile.contents = await sharp(file.contents as Buffer)
-          .resize({
-            width,
-            height: Math.round(width / aspectRatio),
-            fit: 'cover',
-            position: 'north',
-            kernel: 'lanczos3',
-          })
-          .toFormat(filetype, formatOptions)
-          .toBuffer();
+          newFile.contents = await sharp(file.contents as Buffer)
+            .resize({
+              width,
+              height: Math.round(width / aspectRatio),
+              fit: 'cover',
+              position: 'north',
+              kernel: 'lanczos3',
+            })
+            .toFormat(filetype, formatOptions)
+            .toBuffer();
 
-        newFile.basename = `${file.stem}-${width}.${filetype}`;
+          newFile.basename = `${file.stem}-${width}.${filetype}`;
 
-        this.push(newFile);
-      });
-    }));
+          this.push(newFile);
+        });
+      }));
 
-    callback();
+      callback();
+    },
   });
 }
