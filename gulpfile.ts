@@ -1,3 +1,6 @@
+/* eslint @typescript-eslint/explicit-module-boundary-types: "off"
+   -- Functions are only exported from this file to enable them as gulp tasks */
+
 import del from 'del';
 import * as gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
@@ -40,7 +43,7 @@ export function html() {
 /** Compile CSS */
 export function css() {
   return gulp.src(PATHS.css, {base: PATHS.srcRoot})
-    .pipe(sass(OPTIONS.gulpSass).on('error', sass.logError))
+    .pipe(sass(OPTIONS.gulpSass).on('error', sass.logError.bind(sass)))
     .pipe(autoprefixer(OPTIONS.autoprefixer))
     .pipe(cleanCss(OPTIONS.cleanCss))
     .pipe(gulp.dest(PATHS.dest));
