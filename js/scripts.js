@@ -1,0 +1,1 @@
+!function(){"use strict";function t(t){var e=document.getElementById(t);return e&&null!==e.textContent?e.textContent:""}!function(){var e=t("first-name").toLowerCase(),n=t("last-name").toLowerCase();if(e&&n){var o=document.querySelector(".email"),r=e+"@"+e+n+".com";o.href="mailto:"+r,o.textContent=r}}()}();
