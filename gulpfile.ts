@@ -42,7 +42,6 @@ export function html() {
     .pipe(gulp.dest(PATHS.dest));
 }
 
-// TODO Compile from SCSS and minify
 /** Compile CSS */
 export function css() {
   return gulp.src(PATHS.css, {base: PATHS.srcRoot})
