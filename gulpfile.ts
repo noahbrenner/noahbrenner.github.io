@@ -1,6 +1,9 @@
 /* eslint @typescript-eslint/explicit-module-boundary-types: "off"
    -- Functions are only exported from this file to enable them as gulp tasks */
 
+import path from 'path';
+
+import browserSync from 'browser-sync';
 import del from 'del';
 import * as gulp from 'gulp';
 import autoprefixer from 'gulp-autoprefixer';
@@ -80,12 +83,45 @@ export function featured() {
     .pipe(gulp.dest(PATHS.dest));
 }
 
-/** Process all images */
-export const images = gulp.parallel(hero, featured);
-
-const buildTasks = [
-  clean,
-  gulp.parallel(staticFiles, html, css, js, images),
+const imageTasks = [
+  hero,
+  featured,
 ];
 
-export const build = gulp.series(...buildTasks);
+const allBuildTasks = [
+  clean,
+  gulp.parallel(staticFiles, html, css, js, ...imageTasks),
+];
+
+function startBrowserSync() {
+  const server = browserSync.create();
+
+  server.init({
+    server: `./${PATHS.dest}`,
+    open: false,
+  });
+
+  server.watch(PATHS.dest, {}, (_event, filePath) => {
+    // `filePath` is incorrectly typed as `fs.Stats`
+    server.reload(filePath as unknown as string);
+  });
+
+  gulp.watch(PATHS.srcRoot).on('all', (_event, filePath: string) => {
+    const ext = path.extname(filePath).toLowerCase();
+
+    if (ext === '.pug') {
+      html();
+    } else if (ext === '.scss') {
+      css();
+    } else if (ext === '.ts') {
+      js();
+    } else {
+      staticFiles();
+      imageTasks.forEach((task) => task());
+    }
+  });
+}
+
+export const images = gulp.parallel(...imageTasks);
+export const build = gulp.series(...allBuildTasks);
+export const watch = gulp.series(...allBuildTasks, startBrowserSync);
