@@ -110,7 +110,7 @@ function startBrowserSync() {
     } else if (ext === '.scss') {
       css();
     } else if (ext === '.ts') {
-      js();
+      js(); // eslint-disable-line @typescript-eslint/no-floating-promises
     } else {
       staticFiles();
       imageTasks.forEach((task) => task());
