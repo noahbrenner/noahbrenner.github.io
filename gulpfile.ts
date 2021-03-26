@@ -10,13 +10,13 @@ import autoprefixer from 'gulp-autoprefixer';
 import pug from 'gulp-pug';
 import sass from 'gulp-sass';
 import nodeSass from 'node-sass';
+import {rollup} from 'rollup';
 import {terser} from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
 import {PATHS, OPTIONS} from './config';
 import {cleanCss} from './lib/gulp-clean-css';
 import {resizeImages} from './lib/gulp-resize-images';
-import {rollup} from './lib/gulp-rollup';
 
 // The node-sass docs recommend setting the `compiler` property explicitly, but
 // the types defined for the package don't define that property.
@@ -53,19 +53,16 @@ export function css() {
 
 /** Compile JavaScript */
 export function js() {
-  /*
-   * All of the JS build steps are handled via rollup.  The only reason we're
-   * piping through gulp (instead of just returnin a promise) is to simplify
-   * the configuration for BrowserSync live-reloading (once it's implemented).
-   */
-  return gulp.src(PATHS.js, {base: PATHS.srcRoot})
-    .pipe(rollup({
-      plugins: [
-        typescript(OPTIONS.rollupTypescript),
-        terser(),
-      ],
-    }))
-    .pipe(gulp.dest(PATHS.dest));
+  return rollup({
+    input: PATHS.js,
+    plugins: [
+      typescript(OPTIONS.rollupTypescript),
+      terser(),
+    ],
+  }).then((bundle) => bundle.write({
+    dir: path.join(PATHS.dest, 'js'),
+    format: 'iife',
+  }));
 }
 
 /** Process hero image */
