@@ -21,6 +21,7 @@ block hero
     ).hero.full-width
 
 block main
+  p.headline Web developer, Node.js/TypeScript enthusiast, passionate teacher, self-employed musician when time allows.
   address
     ul
       li
@@ -46,6 +47,32 @@ block main
       ].join(', ');
 
     article
+      h3 Instrument Catalog
+      figure
+        +pictureAndSources({
+          basename: '/img/suspended-instruments',
+          sizesAttribute: featuredImageSizes,
+          filetypes: self.img.featured.filetypes,
+          widths: self.img.featured.widths,
+        })
+          img(
+            src="/img/suspended-instruments-390.jpeg"
+            alt="A crowd of plucked string instruments hanging close together."
+          )
+        +figcaptionUnsplashCredit('ZEKERIYA SEN', '4wlRmtvcic0')
+      p Share musical instrument knowledge
+      a(href="https://github.com/noahbrenner/instrument-catalog-frontend").github.icon
+        | noahbrenner/instrument-catalog-frontend
+      a(href="https://github.com/noahbrenner/instrument-catalog-backend").github.icon
+        | noahbrenner/instrument-catalog-backend
+      ul
+        li React
+        li TypeScript
+        li Express API server
+        li Jest test suites
+        li Auth0 authentication
+
+    article
       h3 gsvg #[span.subtitle (Git-friendly SVG)]
       figure
         +pictureAndSources({
@@ -59,36 +86,13 @@ block main
             alt="Electric-blue geometric shapes in three dimensions."
           )
         +figcaptionUnsplashCredit('Ash Edmonds', 'gcINRBbUxl0')
-      p Deterministic SVG code prettifier
+      p Deterministic SVG pretty printer
       a(href="https://github.com/noahbrenner/gsvg").github.icon
         | noahbrenner/gsvg
       ul
-        li Node.js
+        li JavaScript API
+        li Node.js CLI
         li npm package
-        li API/CLI
-
-    article
-      h3 Fresh Tomatillos
-      figure
-        +pictureAndSources({
-          basename: '/img/tomatillos',
-          sizesAttribute: featuredImageSizes,
-          filetypes: self.img.featured.filetypes,
-          widths: self.img.featured.widths,
-        })
-          img(
-            src="/img/tomatillos-390.jpeg"
-            alt="Small cartons of fruits and vegetables, including some tomatillos."
-          )
-        +figcaptionUnsplashCredit('Natalie Walters', 'l2AnTPLBzBk')
-      p Movie trailer website generator
-      a(href="https://github.com/noahbrenner/fresh_tomatillos").github.icon
-        | noahbrenner/fresh_tomatillos
-      ul
-        li Python 2/3
-        li HTML
-        li CSS
-        li JavaScript
 
     article
       h3 This website!
@@ -108,7 +112,7 @@ block main
         | noahbrenner/noahbrenner.github.io
       ul
         li Pug
-        li CSS
+        li SCSS
         li TypeScript
         li gulp
 
@@ -118,5 +122,5 @@ block footer
   - const zocialUrl = 'https://github.com/smcllns/css-social-buttons';
   - const zocialCreatorUrl = 'http://www.smcllns.com/';
   ul
-    li Photo at top by #[a(href=heroPhotoUrl) Maik Jonietz] on #[a(href=unsplashUrl) Unsplash].
+    li Top photo by #[a(href=heroPhotoUrl) Maik Jonietz] on #[a(href=unsplashUrl) Unsplash].
     li #[a(href=zocialUrl) Zocial icons] by #[a(href=zocialCreatorUrl) Sam Collins].
