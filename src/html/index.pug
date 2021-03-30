@@ -46,6 +46,32 @@ block main
       ].join(', ');
 
     article
+      h3 Instrument Catalog
+      figure
+        +pictureAndSources({
+          basename: '/img/suspended-instruments',
+          sizesAttribute: featuredImageSizes,
+          filetypes: self.img.featured.filetypes,
+          widths: self.img.featured.widths,
+        })
+          img(
+            src="/img/suspended-instruments-390.jpeg"
+            alt="A crowd of plucked string instruments hanging close together."
+          )
+        +figcaptionUnsplashCredit('ZEKERIYA SEN', '4wlRmtvcic0')
+      p Share musical instrument knowledge
+      a(href="https://github.com/noahbrenner/instrument-catalog-frontend").github.icon
+        | noahbrenner/instrument-catalog-frontend
+      a(href="https://github.com/noahbrenner/instrument-catalog-backend").github.icon
+        | noahbrenner/instrument-catalog-backend
+      ul
+        li React
+        li TypeScript
+        li Express API server
+        li Jest test suites
+        li Auth0 authentication
+
+    article
       h3 gsvg #[span.subtitle (Git-friendly SVG)]
       figure
         +pictureAndSources({
@@ -66,29 +92,6 @@ block main
         li Node.js
         li npm package
         li API/CLI
-
-    article
-      h3 Fresh Tomatillos
-      figure
-        +pictureAndSources({
-          basename: '/img/tomatillos',
-          sizesAttribute: featuredImageSizes,
-          filetypes: self.img.featured.filetypes,
-          widths: self.img.featured.widths,
-        })
-          img(
-            src="/img/tomatillos-390.jpeg"
-            alt="Small cartons of fruits and vegetables, including some tomatillos."
-          )
-        +figcaptionUnsplashCredit('Natalie Walters', 'l2AnTPLBzBk')
-      p Movie trailer website generator
-      a(href="https://github.com/noahbrenner/fresh_tomatillos").github.icon
-        | noahbrenner/fresh_tomatillos
-      ul
-        li Python 2/3
-        li HTML
-        li CSS
-        li JavaScript
 
     article
       h3 This website!
