@@ -224,14 +224,15 @@ address {
   }
 
   p {
-    margin: 0.5em 0 0;
+    margin: 0.5rem 0;
   }
 
   .github {
-    display: inline-block;
+    display: block;
+    margin: 0.5rem 0;
     white-space: nowrap;
-    line-height: 3em;
-    font-size: 0.8em;
+    line-height: 1em;
+    font-size: 0.8rem;
   }
 
   ul {
@@ -239,21 +240,17 @@ address {
     flex-wrap: wrap;
     justify-content: center;
     list-style: none;
-    margin: 0;
+    margin: 0.75rem 0 0;
     padding: 0;
   }
 
   li {
-    margin-right: 4px;
+    margin: 2px;
     padding: 0 0.25em;
     border: 1px solid #999;
     border-radius: 4px;
     background: #eee;
     font-size: 0.75em;
-
-    &:last-child {
-      margin-right: 0;
-    }
   }
 }
 
